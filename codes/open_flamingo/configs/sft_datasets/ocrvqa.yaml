@@ -1,0 +1,5 @@
+ocrvqa:
+  classname: OCRVQADataset
+  data_cfg:
+    data_path: "${root}/OCRVQA/dataset.json"
+    image_path: "${root}/OCRVQA/images/"

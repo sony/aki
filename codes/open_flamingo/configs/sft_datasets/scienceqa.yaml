@@ -1,0 +1,5 @@
+scienceqa:
+  classname: ScienceQADataset
+  data_cfg:
+    data_path: "${root}/ScienceQA/problems.json"
+    image_path: "${root}/ScienceQA/images/train/"

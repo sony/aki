@@ -1,0 +1,6 @@
+vsr:
+  classname: VSRDataset
+  data_cfg:
+    data_path: "${root}/vsr/train-random.jsonl"
+    image_path_train: "${root}/A-OKVQA/train2017/"
+    image_path_val: "${root}/vsr/val2017/"

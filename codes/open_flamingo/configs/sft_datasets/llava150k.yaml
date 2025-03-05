@@ -1,0 +1,5 @@
+llava150k:
+  classname: LLaVAInstructDataset
+  data_cfg:
+    data_path: "${root}/llava/llava_instruct_150k.json"
+    image_path: "${root}/A-OKVQA/train2017/"

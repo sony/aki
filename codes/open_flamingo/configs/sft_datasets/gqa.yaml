@@ -1,0 +1,5 @@
+gqa:
+  classname: GQADataset
+  data_cfg:
+    data_path: "${root}/GQA/train_balanced_questions.json"
+    image_path: "${root}/GQA/images/"

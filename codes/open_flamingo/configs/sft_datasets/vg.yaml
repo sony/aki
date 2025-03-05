@@ -1,0 +1,6 @@
+vg:
+  classname: VGDataset
+  data_cfg:
+    data_path: "${root}/VisualGenome/region_descriptions.json"
+    image_metadata_path: "${root}/VisualGenome/image_data.json"
+    image_path: "${root}/VisualGenome/images/"

@@ -1,0 +1,5 @@
+vqa:
+  classname: VQADataset
+  data_cfg:
+    data_path: "${root}/VQA/"
+    image_path: "${root}/VQA/train2014/"

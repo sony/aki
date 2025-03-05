@@ -1,0 +1,6 @@
+refcocog:
+  classname: RefExpLocDataset
+  data_cfg:
+    data_path: "${root}/ref/annotations/finetune_refcocog_train.json"
+    image_path: "${root}/VQA/train2014/"
+    datanames: refcocog  # support refcoco, refcoco+, refcocog

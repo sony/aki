@@ -1,0 +1,5 @@
+aokvqa:
+  classname: AOKVQADataset
+  data_cfg:
+    data_path: "${root}/A-OKVQA/aokvqa_v1p0_train.json"
+    image_path: "${root}/A-OKVQA/train2017/"
