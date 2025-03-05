@@ -6,7 +6,7 @@ This repo contains an official PyTorch implementation of [Seeing is Understandin
 ## Overview
 Existing efforts to address vision-language misalignment have focused on developing specialized vision-language connectors or leveraging visual instruction tuning from diverse domains.
 In this paper, we tackle this issue from a fundamental yet unexplored perspective by revisiting the core architecture of MLLMs.
-Most MLLMs are typically built on decoder-only LLMs consisting of a causal attention mechanism, which \textit{limits the ability of earlier modalities (e.g., images) to incorporate information from later modalities (e.g., text)}.
+Most MLLMs are typically built on decoder-only LLMs consisting of a causal attention mechanism, which **limits the ability of earlier modalities (e.g., images) to incorporate information from later modalities (e.g., text)**.
 To address this problem, we propose <i class="fa-brands fa-canadian-maple-leaf" style="color: #ff0000;"></i>AKI, a novel MLLM that unlocks causal attention into modality-mutual attention (MMA) to enable image tokens to attend to text tokens.
 This simple yet effective design allows AKI to achieve superior performance in 12 multimodal understanding benchmarks (+7.2\% on average) without introducing additional parameters and increasing training time.
 Our MMA design is intended to be generic, allowing for application across various modalities, and scalable to accommodate diverse multimodal scenarios.
@@ -53,7 +53,7 @@ Need to run `cd codes/open_flamingo` first.
 
     Under construction to create a PR to VLMEvalKit.
 
-### Local demonstration
+### Local Demonstration
 Need to run `cd codes/open_flamingo` first.
 
 Start the local demo
