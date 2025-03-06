@@ -6,7 +6,7 @@ if __name__ == "__main__":
     REQUIREMENTS = [
         "einops",
         "einops-exts",
-        "transformers>=4.28.1",
+        "transformers==4.41.2",
         "torch>=2.0.1",
         "pillow",
         "open_clip_torch>=2.16.0",
