@@ -1,5 +1,10 @@
 # Seeing is Understanding: Unlocking Causal Attention into Modality-Mutual Attention for Multimodal LLMs
-Paper | Model Checkpoint (coming soon)
+<a href="https://arxiv.org/abs/2503.02597" target="_blank">
+    <img alt="AKI arXiv" src="https://img.shields.io/badge/arXiv-AKI_Paper-003366?logo=arxiv&logoColor=003366" height="25"/>
+</a>
+<a href="https://huggingface.co/Sony/AKI-4B-phi-3.5-mini" target="_blank">
+    <img alt="HF Model: AKI-4B" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Model-AKI--4B_Model-003366?color=ffc107&logoColor=white" height="25"/>
+</a>
 
 This repo contains an official PyTorch implementation of [Seeing is Understanding: Unlocking Causal Attention into Modality-Mutual Attention for Multimodal LLMs](https://arxiv.org/abs/2503.02597) by Wei-Yao Wang, Zhao Wang, Helen Suzuki, Yoshiyuki Kobayashi.
 
@@ -58,7 +63,7 @@ Need to run `cd codes/open_flamingo` first.
 
 Start the local demo
 ```
-python3.12 local_demo.py {model_path}
+python3.12 local_demo.py
 ```
 
 ## Results
@@ -81,7 +86,7 @@ python3.12 local_demo.py {model_path}
 | AKI-4B              | **1491.9** | **362.9** | **73.1** | **69.4**  | **74.6**      | **38.7** | **32.1** | **86.9** | **40.8**  | **58.9** | **62.1** | **71.8** |
 
 ## Contact
-For any questions or issues, feel free to reach out: wei-yao.wang@sony.com.
+For any questions or issues, pleasefeel free to open an issue/PR or reach out: wei-yao.wang@sony.com.
 
 ## Citation
 If you found this repository is relevant or useful to your research, please consider citing our paper:

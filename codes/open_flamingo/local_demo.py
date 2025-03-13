@@ -1,35 +1,40 @@
 import gradio as gr
-import torch
 import sys
 from PIL import Image
-from open_flamingo import create_model_and_transforms
+from transformers import AutoTokenizer, AutoConfig
+from src.aki import AKI
+from torchvision.transforms import Compose, Resize, Lambda, ToTensor, Normalize
+try:
+    from torchvision.transforms import InterpolationMode
+    BICUBIC = InterpolationMode.BICUBIC
+except ImportError:
+    BICUBIC = Image.BICUBIC
 
 
-def load_model_and_processor(ckpt_path):
+def load_model_and_processor(ckpt_path, config):
     # replace GenerationMixin to modify attention mask handling
     from transformers.generation.utils import GenerationMixin
     from open_flamingo import _aki_update_model_kwargs_for_generation
     GenerationMixin._update_model_kwargs_for_generation = _aki_update_model_kwargs_for_generation
     
-    model, image_processor, tokenizer = create_model_and_transforms(
-        clip_vision_encoder_path="siglip-so400m-patch14-384",
-        clip_vision_encoder_pretrained="google",
-        lang_encoder_path='microsoft/Phi-3.5-mini-instruct',
-        tokenizer_path='microsoft/Phi-3.5-mini-instruct',
-    )
+    n_px = getattr(config, "n_px", 384)
+    norm_mean = getattr(config, "norm_mean", 0.5)
+    norm_std = getattr(config, "norm_std", 0.5)
 
-    checkpoint = torch.load(ckpt_path, map_location="cpu")
+    # replace GenerationMixin to modify attention mask handling
+    from transformers.generation.utils import GenerationMixin
+    from open_flamingo import _aki_update_model_kwargs_for_generation
+    GenerationMixin._update_model_kwargs_for_generation = _aki_update_model_kwargs_for_generation
+    
+    tokenizer = AutoTokenizer.from_pretrained(ckpt_path)
+    model = AKI.from_pretrained(ckpt_path, tokenizer=tokenizer)
+    image_processor = Compose([
+        Resize((n_px, n_px), interpolation=InterpolationMode.BICUBIC, antialias=True),
+        Lambda(lambda x: x.convert('RGB')),
+        ToTensor(),
+        Normalize(mean=(norm_mean, norm_mean, norm_mean), std=(norm_std, norm_std, norm_std))
+    ])
 
-    msd = checkpoint.pop("model_state_dict")
-    msd = {k.replace("module.", ""): v for k, v in msd.items()}
-
-    if 'vision_tokenizer.latents' in msd.keys():
-        msd_current = model.state_dict()
-        if msd_current['vision_tokenizer.latents'].shape != msd['vision_tokenizer.latents'].shape:
-            msd["vision_tokenizer.latents"] = msd_current['vision_tokenizer.latents'] # Random re-init.
-
-    results = model.load_state_dict(msd, strict=False)
-    torch.cuda.empty_cache()
     model.eval().cuda()
     print("Model initialization is done.")
     return model, image_processor, tokenizer
@@ -66,11 +71,7 @@ def process_input(image: Image.Image, text_input: str) -> str:
     print("Prompt:", prompt)
     
     # Preprocess inputs for the model
-    vision_x = []
-    vision_x.append(image_processor(image).unsqueeze(0))
-
-    vision_x = torch.cat(vision_x, dim=0) if len(vision_x) > 1 else vision_x[0]
-    vision_x = vision_x.unsqueeze(1).unsqueeze(0).cuda()
+    vision_x = image_processor(image)[None, None, None, ...].cuda()
 
     generation_kwargs = {
         'max_new_tokens': 256,
@@ -92,8 +93,10 @@ def process_input(image: Image.Image, text_input: str) -> str:
 
 # Main execution
 if __name__ == "__main__":
+    model_path = "Sony/AKI-4B-phi-3.5-mini"
     # Load model, image_processor, tokenizer
-    model, image_processor, tokenizer = load_model_and_processor(sys.argv[1])
+    config = AutoConfig.from_pretrained(model_path)
+    model, image_processor, tokenizer = load_model_and_processor(model_path, config=config)
 
     # Define and set up the Gradio interface
     demo = gr.Interface(
