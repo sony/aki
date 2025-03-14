@@ -32,12 +32,12 @@ if __name__ == "__main__":
     ]
 
     setup(
-        name="AKI",
+        name="AKIVLM",
         packages=find_packages(),
         include_package_data=True,
-        version="2.0.1",
-        license="MIT",
-        description="Unlocking Causal Attention into Modality-Mutual Attention for Multimodal LLMs",
+        version="0.1.0",
+        license="CC-BY-NC 4.0",
+        description="Seeing is Understanding: Unlocking Causal Attention into Modality-Mutual Attention for Multimodal LLMs",
         long_description="None",
         long_description_content_type="text/markdown",
         data_files=[(".", ["README.md"])],
@@ -50,5 +50,8 @@ if __name__ == "__main__":
         },
         classifiers=[
             "Programming Language :: Python :: 3.12",
+            'Intended Audience :: Developers',
+            'Intended Audience :: Education',
+            'Intended Audience :: Science/Research',
         ],
     )
