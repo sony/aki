@@ -2,7 +2,7 @@ import gradio as gr
 import sys
 from PIL import Image
 from transformers import AutoTokenizer, AutoConfig
-from src.aki import AKI
+from src.modeling_aki import AKI
 from torchvision.transforms import Compose, Resize, Lambda, ToTensor, Normalize
 try:
     from torchvision.transforms import InterpolationMode
