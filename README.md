@@ -6,6 +6,7 @@
     <img alt="HF Model: AKI-4B" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Model-AKI--4B_Model-003366?color=ffc107&logoColor=white" height="25"/>
 </a>
 
+
 This repo contains an official PyTorch implementation of [Seeing is Understanding: Unlocking Causal Attention into Modality-Mutual Attention for Multimodal LLMs](https://arxiv.org/abs/2503.02597) by Wei-Yao Wang, Zhao Wang, Helen Suzuki, Yoshiyuki Kobayashi.
 
 ## Overview
