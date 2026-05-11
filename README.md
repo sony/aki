@@ -1,4 +1,4 @@
-# Seeing is Understanding: Unlocking Causal Attention into Modality-Mutual Attention for Multimodal LLMs
+# Seeing is Understanding: Unlocking Causal Attention into Modality-Mutual Attention for Multimodal LLMs (ICML 2026)
 <a href="https://arxiv.org/abs/2503.02597" target="_blank">
     <img alt="AKI arXiv" src="https://img.shields.io/badge/arXiv-AKI_Paper-003366?logo=arxiv&logoColor=003366" height="25"/>
 </a>
